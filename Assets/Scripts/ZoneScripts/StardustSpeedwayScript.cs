@@ -18,6 +18,8 @@ public class StardustSpeedwayScript : ZoneScript
 
         playerZone = this.transform.parent.Find("PlayerZone").GetComponent<ZoneScript>();
         enemyZone = this.transform.parent.Find("EnemyZone").GetComponent<ZoneScript>();
+
+        base.Start();
     }
 
     public override void onGoing() {

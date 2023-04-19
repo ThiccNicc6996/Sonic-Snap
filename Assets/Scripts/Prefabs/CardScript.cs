@@ -104,6 +104,13 @@ public class CardScript : MonoBehaviour
 
     public void updatePowerText() {
         powerText.text = power.ToString();
+        if (power > corePower) {
+            powerText.color = new Color(0,255,0);
+        } else if (power < corePower) {
+            powerText.color = new Color(255,0,0);
+        } else {
+            powerText.color = new Color(0,0,0);
+        }
     }
 
     /*********************
