@@ -37,7 +37,7 @@ public class CardScript : MonoBehaviour
     private TextMeshPro powerText;
     private TextMeshPro costText;
 
-    void Start() {
+    public virtual void Start() {
         specialScript = this.GetComponent<SpecialScript>();
 
         cost = coreCost;
@@ -50,17 +50,19 @@ public class CardScript : MonoBehaviour
         costText.text = coreCost.ToString();
     }
 
-    public void playCard() {
-        if (specialScript) {
-            specialScript.playCard();
-        }
+    /*****************
+    * Main Functions *
+    *****************/
+
+    public virtual void playCard() {
         applyPowerMods();
     }
 
-    public void updateCard() {
-        if (specialScript) {
-            specialScript.updateCard();
-        }
+    public virtual void onReveal() {}
+
+    public virtual void onGoing() {}
+
+    public virtual void updateCard() {
         applyPowerMods();
     }
 

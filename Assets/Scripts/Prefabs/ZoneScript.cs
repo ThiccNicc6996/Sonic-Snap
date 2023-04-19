@@ -174,8 +174,6 @@ public class ZoneScript : MonoBehaviour
     private void calculatePower() {
         int newPower = 0;
         foreach (GameObject card in cards) {
-            Debug.Log("POWER IS");
-            Debug.Log(card.gameObject.GetComponent<CardScript>().getPower());
             newPower += card.gameObject.GetComponent<CardScript>().getPower();
         }
 
