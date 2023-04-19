@@ -154,7 +154,7 @@ public class ZoneScript : MonoBehaviour
     }
 
     private void applyZoneEffect() {
-        zoneEffectScript.onGoing();
+        // zoneEffectScript.onGoing();
     }
 
     private void revealLatestCards(List<GameObject> latest) {

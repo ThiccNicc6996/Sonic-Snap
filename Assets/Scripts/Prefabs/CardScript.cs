@@ -9,37 +9,33 @@ using static PowerUtils.Modifier;
 
 public class CardScript : MonoBehaviour
 {
-    //Script which has attributes of specific card
-    SpecialScript specialScript;
     //Original values
     public int coreCost;
     public int corePower;
 
     //Potentially modified values
-    private int cost;
-    private int power;
+    protected int cost;
+    protected int power;
 
     //List of values that change the card's power
-    private List<PowerUtils.Modifier> mods = new List<PowerUtils.Modifier>();
+    protected List<PowerUtils.Modifier> mods = new List<PowerUtils.Modifier>();
 
     /*****************************************
     Variables for whether cards can be moved
     *****************************************/
 
     //Whether card is locked into place (ex: card was played on previous turn)
-    private bool locked = false;
+    protected bool locked = false;
     //Whether the card can currently move to another zone DESPITE being locked
     public bool movable = false;
 
-    private GameObject currentZone;
+    protected GameObject currentZone;
 
     //Text for power and cost
     private TextMeshPro powerText;
     private TextMeshPro costText;
 
     public virtual void Start() {
-        specialScript = this.GetComponent<SpecialScript>();
-
         cost = coreCost;
         power = corePower;
 

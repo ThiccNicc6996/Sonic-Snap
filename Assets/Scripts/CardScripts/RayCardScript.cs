@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecialScript : MonoBehaviour
+public class RayCardScript : CardScript
 {
     private bool cardPlayed = false;
     private bool hasMoved = false;
@@ -10,25 +10,28 @@ public class SpecialScript : MonoBehaviour
 
     private CardScript cardScript;
 
-    void Start() {
-        cardScript = this.gameObject.GetComponent<CardScript>();
+    public override void Start() {
+        base.Start();
     }
 
-    public void playCard() {
+    public override void playCard() {
         cardPlayed = true;
-        originalZone = cardScript.getZone();
+        originalZone = currentZone;
+
+        base.playCard();
     }
 
-    public void updateCard() {
+    public override void updateCard() {
         if (!hasMoved) {
             zoneChangeCheck();
         }
+
+        base.updateCard();
     }
 
     private void zoneChangeCheck() {
-
-        if (cardScript.getZone() != originalZone) {
-            cardScript.updateMovable();
+        if (currentZone != originalZone) {
+            movable = false;
             hasMoved = true;
         }
     }
