@@ -6,27 +6,26 @@ using TMPro;
 
 public class ZoneScript : MonoBehaviour
 {
+    //Main variables
     public bool isPlayerZone;
-
-    BoxCollider2D zoneCollider;
-    List<Vector3> zoneSpots = new List<Vector3>();
+    public bool isRevealed = false;
+    private int zonePower = 0;
     List<GameObject> cards = new List<GameObject>();
 
-    private int zonePower = 0;
-
-    private ZoneEffectScript zoneEffectScript;
+    //Variables for outside scripts/objects
     private LogicManagerScript logicScript;
-
     private TextMeshPro powerText;
 
+    //Collision detection variables
+    BoxCollider2D zoneCollider;
     List<Collider2D> TriggerList = new List<Collider2D>();
+    List<Vector3> zoneSpots = new List<Vector3>();
 
-    void Start()
+    public virtual void Start()
     {
         zoneCollider = this.gameObject.GetComponent<BoxCollider2D>();
         establishCardSpots();
 
-        zoneEffectScript = transform.parent.Find("ZoneEffect").GetComponent<ZoneEffectScript>();
         logicScript = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicManagerScript>();
 
         powerText = this.gameObject.transform.Find("PowerText").gameObject.GetComponent<TextMeshPro>();
@@ -48,41 +47,14 @@ public class ZoneScript : MonoBehaviour
 
     }
 
+    public virtual void onReveal() {}
+    
+    public virtual void onGoing() {}
+
     public List<GameObject> getCards() {
         return cards;
     }
 
-    /****************************************
-    Functions for adding and removing cards
-    ****************************************/
-
-    private void addCard(GameObject newCard) {
-        if (cards.Count < zoneSpots.Count) {
-            int slotNum = cards.Count;
-
-            cards.Add(newCard);
-            newCard.gameObject.transform.position = zoneSpots[slotNum];
-
-            logicScript.alterPlayerEnergy(newCard.gameObject.GetComponent<CardScript>().getCost() * -1);
-        } else {
-            Debug.Log("FULL");
-        }
-    }
-
-    private void removeCard(GameObject card) {
-        cards.Remove(card);
-        if (!card.transform.gameObject.GetComponent<CardScript>().isMovable()) {
-            logicScript.alterPlayerEnergy(card.gameObject.GetComponent<CardScript>().getCost());
-        }
-    }
-
-    private void checkAbsentCards() {
-        foreach (GameObject card in cards.ToList()) {
-            if (!TriggerListContainsCard(card)) {
-                removeCard(card);
-            }
-        }
-    }
 
     private bool enoughEnergy(GameObject card) {
         return logicScript.getPlayerEnergy() >= card.GetComponent<CardScript>().getCost();
@@ -127,9 +99,9 @@ public class ZoneScript : MonoBehaviour
     public void updateZone() {
         List<GameObject> latestCards = gatherLatestCards();
         lockZone();
-        applyZoneEffect();
         revealLatestCards(latestCards);
         updateOtherCards(latestCards);
+        applyZoneEffect();
         calculatePower();
     }
 
@@ -153,22 +125,26 @@ public class ZoneScript : MonoBehaviour
         }
     }
 
-    private void applyZoneEffect() {
-        // zoneEffectScript.onGoing();
-    }
-
     private void revealLatestCards(List<GameObject> latest) {
         foreach (GameObject card in latest) {
-            card.GetComponent<CardScript>().playCard();
+            CardScript cardScript = card.GetComponent<CardScript>();
+            cardScript.playCard();
+            cardScript.onReveal();
+            cardScript.onGoing();
         }
     }
 
     private void updateOtherCards(List<GameObject> latest) {
         foreach (GameObject card in cards) {
             if (!latest.Contains(card)) {
-                card.GetComponent<CardScript>().updateCard();
+                CardScript cardScript = card.GetComponent<CardScript>();
+                cardScript.onGoing();
             }
         }
+    }
+
+    private void applyZoneEffect() {
+        // zoneEffectScript.onGoing();
     }
 
     private void calculatePower() {
@@ -179,6 +155,38 @@ public class ZoneScript : MonoBehaviour
 
         zonePower = newPower;
         powerText.text = zonePower.ToString();
+    }
+
+    /****************************************
+    Functions for adding and removing cards
+    ****************************************/
+
+    private void addCard(GameObject newCard) {
+        if (cards.Count < zoneSpots.Count) {
+            int slotNum = cards.Count;
+
+            cards.Add(newCard);
+            newCard.gameObject.transform.position = zoneSpots[slotNum];
+
+            logicScript.alterPlayerEnergy(newCard.gameObject.GetComponent<CardScript>().getCost() * -1);
+        } else {
+            Debug.Log("FULL");
+        }
+    }
+
+    private void removeCard(GameObject card) {
+        cards.Remove(card);
+        if (!card.transform.gameObject.GetComponent<CardScript>().isMovable()) {
+            logicScript.alterPlayerEnergy(card.gameObject.GetComponent<CardScript>().getCost());
+        }
+    }
+
+    private void checkAbsentCards() {
+        foreach (GameObject card in cards.ToList()) {
+            if (!TriggerListContainsCard(card)) {
+                removeCard(card);
+            }
+        }
     }
 
     /*********************************
