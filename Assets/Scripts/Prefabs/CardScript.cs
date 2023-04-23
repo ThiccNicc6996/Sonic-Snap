@@ -50,6 +50,7 @@ public class CardScript : MonoBehaviour
     * Main Functions *
     *****************/
 
+    //Special, non-reveal/on-going functionality
     public virtual void playCard() {
         applyPowerMods();
     }
@@ -57,6 +58,14 @@ public class CardScript : MonoBehaviour
     public virtual void onReveal() {}
 
     public virtual void onGoing() {}
+
+    public virtual void onDestroy() {
+        destroyCard();
+    }
+
+    public virtual void onDiscard() {
+        discardCard();
+    }
 
     public virtual void updateCard() {
         applyPowerMods();
@@ -104,6 +113,18 @@ public class CardScript : MonoBehaviour
 
     public void updatePowerText() {
         powerText.text = power.ToString();
+    }
+
+    /******************************
+    * Destroy & Discard functions *
+    ******************************/
+
+    private void destroyCard() {
+        Destroy(this.gameObject);
+    }
+
+    private void discardCard() {
+        Destroy(this.gameObject);
     }
 
     /*********************
