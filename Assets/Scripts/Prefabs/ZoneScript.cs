@@ -139,6 +139,7 @@ public class ZoneScript : MonoBehaviour
             if (!latest.Contains(card)) {
                 CardScript cardScript = card.GetComponent<CardScript>();
                 cardScript.onGoing();
+                cardScript.updateCard();
             }
         }
     }
@@ -155,6 +156,22 @@ public class ZoneScript : MonoBehaviour
 
         zonePower = newPower;
         powerText.text = zonePower.ToString();
+    }
+
+    /************************************************
+    * Functions for getting information about cards *
+    ************************************************/
+
+    public List<GameObject> getOtherCards(GameObject card) {
+        List<GameObject> otherCards = new List<GameObject>();
+
+        foreach (GameObject other in cards) {
+            if (other != card) {
+                otherCards.Add(other);
+            }
+        }
+
+        return otherCards;
     }
 
     /****************************************

@@ -9,7 +9,7 @@ public class PlayerDeckScript : MonoBehaviour
         "Ray",
         "Laser",
         "Amy",
-        "Chaos",
+        "NegaWisp",
         "Tails",
         "Gamma",
         "Knuckles",
