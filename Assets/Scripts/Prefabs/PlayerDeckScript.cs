@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Linq;
+
 public class PlayerDeckScript : MonoBehaviour
 {
     private string[] cardList = {
@@ -31,8 +33,14 @@ public class PlayerDeckScript : MonoBehaviour
     }
 
     public void removeCard(int index) {
-        for (int i = index; i < cardList.Length-1; i++) {
+        int topIndex = cardList.Length-1;
+        for (int i = index; i < topIndex; i++) {
             cardList[i] = cardList[i + 1];
         }
+
+        List<string> newList = cardList.ToList();
+        newList.RemoveAt(topIndex);
+
+        cardList = newList.ToArray();
     }
 }
