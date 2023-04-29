@@ -13,6 +13,7 @@ public class ZoneScript : MonoBehaviour
     List<GameObject> cards = new List<GameObject>();
 
     //Variables for outside scripts/objects
+    private ZoneEffectScript zoneEffectScript;
     private LogicManagerScript logicScript;
     private TextMeshPro powerText;
 
@@ -25,6 +26,8 @@ public class ZoneScript : MonoBehaviour
     {
         zoneCollider = this.gameObject.GetComponent<BoxCollider2D>();
         establishCardSpots();
+
+        zoneEffectScript = this.transform.parent.Find("ZoneEffect").GetComponent<ZoneEffectScript>();
 
         logicScript = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicManagerScript>();
 
@@ -101,7 +104,6 @@ public class ZoneScript : MonoBehaviour
         lockZone();
         revealLatestCards(latestCards);
         updateOtherCards(latestCards);
-        applyZoneEffect();
         calculatePower();
     }
 
@@ -131,6 +133,9 @@ public class ZoneScript : MonoBehaviour
             cardScript.playCard();
             cardScript.onReveal();
             cardScript.onGoing();
+
+            zoneEffectScript.perCard(cardScript);
+            cardScript.perCard();
         }
     }
 
@@ -142,10 +147,6 @@ public class ZoneScript : MonoBehaviour
                 cardScript.updateCard();
             }
         }
-    }
-
-    private void applyZoneEffect() {
-        // zoneEffectScript.onGoing();
     }
 
     private void calculatePower() {

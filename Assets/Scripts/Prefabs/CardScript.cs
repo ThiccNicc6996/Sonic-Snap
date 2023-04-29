@@ -50,7 +50,7 @@ public class CardScript : MonoBehaviour
     * Main Functions *
     *****************/
 
-    //Special, non-reveal/on-going functionality
+    //Special, on-reveal/on-going functionality
     public virtual void playCard() {
         applyPowerMods();
     }
@@ -68,6 +68,11 @@ public class CardScript : MonoBehaviour
     }
 
     public virtual void updateCard() {
+        applyPowerMods();
+    }
+
+    //Exclusively for updating power mods
+    public void perCard() {
         applyPowerMods();
     }
 

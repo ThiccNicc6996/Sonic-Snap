@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 3213271470744791072}
   m_Layer: 0
   m_Name: PlayerZone
-  m_TagString: Zone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerZone: 1
+  isRevealed: 0
 --- !u!61 &3213271470744791086
 BoxCollider2D:
   m_ObjectHideFlags: 0

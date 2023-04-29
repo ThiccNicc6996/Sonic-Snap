@@ -92,10 +92,10 @@ public class LogicManagerScript : MonoBehaviour
     **********************/
 
     private void updateZones() {
-        GameObject[] zones = GameObject.FindGameObjectsWithTag("Zone");
+        GameObject[] zoneGroups = GameObject.FindGameObjectsWithTag("Zone");
 
-        foreach (GameObject zone in zones) {
-            zone.GetComponent<ZoneScript>().updateZone();
+        foreach (GameObject group in zoneGroups) {
+            group.GetComponentInChildren<ZoneEffectScript>().updateZone();
         }
     }
 

@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 2537472725430665333}
   m_Layer: 0
   m_Name: EnemyZone
-  m_TagString: Zone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerZone: 0
+  isRevealed: 0
 --- !u!61 &6797334646773932792
 BoxCollider2D:
   m_ObjectHideFlags: 0
