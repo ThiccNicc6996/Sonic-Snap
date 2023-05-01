@@ -194,9 +194,7 @@ public class ZoneScript : MonoBehaviour
 
     private void removeCard(GameObject card) {
         cards.Remove(card);
-        if (!card.transform.gameObject.GetComponent<CardScript>().isMovable()) {
-            logicScript.alterPlayerEnergy(card.gameObject.GetComponent<CardScript>().getCost());
-        }
+        logicScript.alterPlayerEnergy(card.gameObject.GetComponent<CardScript>().getCost());
     }
 
     private void checkAbsentCards() {
