@@ -8,24 +8,27 @@ namespace HandUtilities {
         public Vector3 position;
         public GameObject card;
 
+        public CardSlot(GameObject initCard) {
+            card = initCard;
+        }
+
         public void changeCard(GameObject newCard) {
             card = newCard;
         }
 
         public void changePosition(Vector3 newPosition) {
             position = newPosition;
+            card.transform.position = position;
         }
 
-        public bool isEmpty() {
-            bool isEmpty;
+        public bool compareCard (GameObject otherCard) {
+            bool isCard = false;
 
-            if (position == null && card == null) {
-                isEmpty = true;
-            } else {
-                isEmpty = false;
+            if (otherCard == card) {
+                isCard = true;
             }
 
-            return isEmpty;
+            return isCard;
         }
     }
 }

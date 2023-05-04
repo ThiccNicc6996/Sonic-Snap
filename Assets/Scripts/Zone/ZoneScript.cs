@@ -15,6 +15,7 @@ public class ZoneScript : MonoBehaviour
     //Variables for outside scripts/objects
     private ZoneEffectScript zoneEffectScript;
     private LogicManagerScript logicScript;
+    private PlayerHandScript handScript;
     private TextMeshPro powerText;
 
     //Collision detection variables
@@ -30,6 +31,8 @@ public class ZoneScript : MonoBehaviour
         zoneEffectScript = this.transform.parent.Find("ZoneEffect").GetComponent<ZoneEffectScript>();
 
         logicScript = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicManagerScript>();
+
+        handScript = GameObject.FindGameObjectWithTag("PlayerHand").GetComponent<PlayerHandScript>();
 
         powerText = this.gameObject.transform.Find("PowerText").gameObject.GetComponent<TextMeshPro>();
         powerText.text = zonePower.ToString();
@@ -187,6 +190,8 @@ public class ZoneScript : MonoBehaviour
             newCard.gameObject.transform.position = zoneSpots[slotNum];
 
             logicScript.alterPlayerEnergy(newCard.gameObject.GetComponent<CardScript>().getCost() * -1);
+
+            handScript.removeCard(newCard);
         } else {
             Debug.Log("FULL");
         }

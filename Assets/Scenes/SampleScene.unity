@@ -1945,6 +1945,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHand
       objectReference: {fileID: 0}
+    - target: {fileID: 9216984098545944122, guid: e33364167f16a6c4185d09ff65ddced5, type: 3}
+      propertyPath: m_TagString
+      value: PlayerHand
+      objectReference: {fileID: 0}
     - target: {fileID: 9216984098545944123, guid: e33364167f16a6c4185d09ff65ddced5, type: 3}
       propertyPath: m_RootOrder
       value: 2
