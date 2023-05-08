@@ -30,6 +30,7 @@ public class CardScript : MonoBehaviour
     public bool movable = false;
 
     protected GameObject currentZone;
+    protected ZoneEffectScript zoneEffect;
 
     //Text for power and cost
     private TextMeshPro powerText;
@@ -113,7 +114,8 @@ public class CardScript : MonoBehaviour
     }
 
     public void updateZone(GameObject newZone) {
-        currentZone = newZone; 
+        currentZone = newZone;
+        zoneEffect = currentZone.transform.parent.Find("ZoneEffect").GetComponent<ZoneEffectScript>();
     }
 
     public void updatePowerText() {
@@ -186,5 +188,35 @@ public class CardScript : MonoBehaviour
 
     public void addPowerMod(PowerUtils.Modifier mod) {
         mods.Add(mod);
+    }
+
+    /*****************
+    * Zone Utilities *
+    *****************/
+
+    // Returns all cards at this card's zone except itself
+    protected List<GameObject> getOtherCards() {
+        List<GameObject> otherCards;
+
+        if (currentZone.GetComponent<ZoneScript>().isPlayerZone) {
+            otherCards = zoneEffect.getPlayerZone().getOtherCards(this.gameObject);
+        } else {
+            otherCards = zoneEffect.getEnemyZone().getOtherCards(this.gameObject);
+        }
+
+        return otherCards;
+    }
+
+    // Returns all cards at the zone opposite of this card's zone
+    protected List<GameObject> getOpposingCards() {
+        List<GameObject> otherCards;
+
+        if (currentZone.GetComponent<ZoneScript>().isPlayerZone) {
+            otherCards = zoneEffect.getEnemyZone().getCards();
+        } else {
+            otherCards = zoneEffect.getPlayerZone().getCards();
+        }
+
+        return otherCards;
     }
 }

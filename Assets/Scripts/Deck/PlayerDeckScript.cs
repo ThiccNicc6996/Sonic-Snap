@@ -18,6 +18,7 @@ public class PlayerDeckScript : MonoBehaviour
         "Rouge",
         "Sonic",
         "Eggman",
+        "Infinite",
         "Mephiles",
         "Giganto"
     };

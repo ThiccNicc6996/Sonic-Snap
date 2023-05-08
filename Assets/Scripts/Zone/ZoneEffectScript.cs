@@ -40,4 +40,16 @@ public class ZoneEffectScript : MonoBehaviour
 
     //Runs after each card is played
     public virtual void perCard(CardScript cardScript) {}
+
+    /*******************
+    * Getter Functions *
+    *******************/
+
+    public ZoneScript getPlayerZone() {
+        return playerZone;
+    }
+
+    public ZoneScript getEnemyZone() {
+        return enemyZone;
+    }
 }

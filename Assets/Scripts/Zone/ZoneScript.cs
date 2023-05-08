@@ -66,6 +66,14 @@ public class ZoneScript : MonoBehaviour
         return logicScript.getPlayerEnergy() >= card.GetComponent<CardScript>().getCost();
     }
 
+    /*******************
+    * Getter Functions *
+    *******************/
+
+    public ZoneEffectScript getZoneEffect() {
+        return zoneEffectScript;
+    }
+
     /************************************
     Functions for initializing the zone
     *************************************/
