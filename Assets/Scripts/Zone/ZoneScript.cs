@@ -10,7 +10,7 @@ public class ZoneScript : MonoBehaviour
     public bool isPlayerZone;
     public bool isRevealed = false;
     private int zonePower = 0;
-    List<GameObject> cards = new List<GameObject>();
+    List<Card> cards = new List<Card>();
 
     //Variables for outside scripts/objects
     private ZoneEffectScript zoneEffectScript;
@@ -41,9 +41,9 @@ public class ZoneScript : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonUp(0)) {
-            List<GameObject> newCards = gatherNewCards();
+            List<Card> newCards = gatherNewCards();
 
-            foreach (GameObject card in newCards) {
+            foreach (Card card in newCards) {
                 if (enoughEnergy(card)) {
                     addCard(card);
                 }
@@ -57,13 +57,13 @@ public class ZoneScript : MonoBehaviour
     
     public virtual void onGoing() {}
 
-    public List<GameObject> getCards() {
+    public List<Card> getCards() {
         return cards;
     }
 
 
-    private bool enoughEnergy(GameObject card) {
-        return logicScript.getPlayerEnergy() >= card.GetComponent<CardScript>().getCost();
+    private bool enoughEnergy(Card card) {
+        return logicScript.getPlayerEnergy() >= card.getCost();
     }
 
     /*******************
@@ -111,18 +111,18 @@ public class ZoneScript : MonoBehaviour
     **********************/
 
     public void updateZone() {
-        List<GameObject> latestCards = gatherLatestCards();
+        List<Card> latestCards = gatherLatestCards();
         lockZone();
         revealLatestCards(latestCards);
         updateOtherCards(latestCards);
         calculatePower();
     }
 
-    private List<GameObject> gatherLatestCards() {
-        List<GameObject> latest = new List<GameObject>();
+    private List<Card> gatherLatestCards() {
+        List<Card> latest = new List<Card>();
 
-        foreach (GameObject card in cards) {
-            if (!card.GetComponent<CardScript>().isLocked()) {
+        foreach (Card card in cards) {
+            if (!card.isLocked()) {
                 latest.Add(card);
             }
         }
@@ -132,38 +132,36 @@ public class ZoneScript : MonoBehaviour
 
     //Lock all of the cards in the zone
     private void lockZone() {
-        foreach(GameObject card in cards) {
-            card.GetComponent<CardScript>().lockCard();
-            card.GetComponent<CardScript>().updateZone(this.gameObject);
+        foreach(Card card in cards) {
+            card.GetComponent<Card>().lockCard();
+            card.GetComponent<Card>().updateZone(this.gameObject);
         }
     }
 
-    private void revealLatestCards(List<GameObject> latest) {
-        foreach (GameObject card in latest) {
-            CardScript cardScript = card.GetComponent<CardScript>();
-            cardScript.playCard();
-            cardScript.onReveal();
-            cardScript.onGoing();
+    private void revealLatestCards(List<Card> latest) {
+        foreach (Card card in latest) {
+            card.playCard();
+            card.onReveal();
+            card.onGoing();
 
-            zoneEffectScript.perCard(cardScript);
-            cardScript.perCard();
+            zoneEffectScript.perCard(card);
+            card.perCard();
         }
     }
 
-    private void updateOtherCards(List<GameObject> latest) {
-        foreach (GameObject card in cards) {
+    private void updateOtherCards(List<Card> latest) {
+        foreach (Card card in cards) {
             if (!latest.Contains(card)) {
-                CardScript cardScript = card.GetComponent<CardScript>();
-                cardScript.onGoing();
-                cardScript.updateCard();
+                card.onGoing();
+                card.updateCard();
             }
         }
     }
 
     private void calculatePower() {
         int newPower = 0;
-        foreach (GameObject card in cards) {
-            newPower += card.gameObject.GetComponent<CardScript>().getPower();
+        foreach (Card card in cards) {
+            newPower += card.getPower();
         }
 
         zonePower = newPower;
@@ -174,10 +172,10 @@ public class ZoneScript : MonoBehaviour
     * Functions for getting information about cards *
     ************************************************/
 
-    public List<GameObject> getOtherCards(GameObject card) {
-        List<GameObject> otherCards = new List<GameObject>();
+    public List<Card> getOtherCards(Card card) {
+        List<Card> otherCards = new List<Card>();
 
-        foreach (GameObject other in cards) {
+        foreach (Card other in cards) {
             if (other != card) {
                 otherCards.Add(other);
             }
@@ -190,14 +188,14 @@ public class ZoneScript : MonoBehaviour
     Functions for adding and removing cards
     ****************************************/
 
-    private void addCard(GameObject newCard) {
+    private void addCard(Card newCard) {
         if (cards.Count < zoneSpots.Count) {
             int slotNum = cards.Count;
 
             cards.Add(newCard);
             newCard.gameObject.transform.position = zoneSpots[slotNum];
 
-            logicScript.alterPlayerEnergy(newCard.gameObject.GetComponent<CardScript>().getCost() * -1);
+            logicScript.alterPlayerEnergy(newCard.getCost() * -1);
 
             handScript.removeCard(newCard);
         } else {
@@ -205,13 +203,13 @@ public class ZoneScript : MonoBehaviour
         }
     }
 
-    private void removeCard(GameObject card) {
+    private void removeCard(Card card) {
         cards.Remove(card);
-        logicScript.alterPlayerEnergy(card.gameObject.GetComponent<CardScript>().getCost());
+        logicScript.alterPlayerEnergy(card.getCost());
     }
 
     private void checkAbsentCards() {
-        foreach (GameObject card in cards.ToList()) {
+        foreach (Card card in cards.ToList()) {
             if (!TriggerListContainsCard(card)) {
                 removeCard(card);
             }
@@ -222,11 +220,11 @@ public class ZoneScript : MonoBehaviour
     Functions for detecting collision
     *********************************/
 
-    private List<GameObject> gatherNewCards() {
-        List<GameObject> newCards = new List<GameObject>();
+    private List<Card> gatherNewCards() {
+        List<Card> newCards = new List<Card>();
 
         foreach(Collider2D collider in TriggerList) {
-            GameObject newCard = collider.gameObject;
+            Card newCard = collider.gameObject.GetComponent<Card>();
             if (!cards.Contains(newCard)) {
                 newCards.Add(newCard);
             }
@@ -235,10 +233,10 @@ public class ZoneScript : MonoBehaviour
         return newCards;
     }
 
-    private bool TriggerListContainsCard(GameObject card) {
+    private bool TriggerListContainsCard(Card card) {
         bool containsCard = false;
         foreach (Collider2D collider in TriggerList) {
-            if (collider.gameObject == card) {
+            if (collider.gameObject.GetComponent<Card>() == card) {
                 containsCard = true;
                 break;
             }

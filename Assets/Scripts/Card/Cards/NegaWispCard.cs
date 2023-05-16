@@ -4,7 +4,7 @@ using UnityEngine;
 
 using static PowerUtils.Modifier;
 
-public class NegaWispCardScript : CardScript
+public class NegaWispCard : Card
 {
     PowerUtils.Modifier addTwo = new PowerUtils.Modifier("NegaWisp", "Add", 2);
     // Start is called before the first frame update
@@ -14,10 +14,10 @@ public class NegaWispCardScript : CardScript
     }
 
     public override void onReveal() {
-        List<GameObject> otherCards = currentZone.GetComponent<ZoneScript>().getOtherCards(this.gameObject);
+        List<Card> otherCards = currentZone.GetComponent<ZoneScript>().getOtherCards(this);
 
-        foreach (GameObject card in otherCards) {
-            card.GetComponent<CardScript>().onDestroy();
+        foreach (Card card in otherCards) {
+            card.onDestroy();
             addPowerMod(addTwo);
         }
     }

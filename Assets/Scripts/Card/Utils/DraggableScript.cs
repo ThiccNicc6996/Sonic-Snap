@@ -8,10 +8,10 @@ public class DraggableScript : MonoBehaviour
     //Whether the card is being dragged by the player
     private bool isHeld = false;
 
-    private CardScript cardScript;
+    private Card cardScript;
 
     void Start() {
-        cardScript = this.transform.gameObject.GetComponent<CardScript>();
+        cardScript = this.transform.gameObject.GetComponent<Card>();
     }
 
     void Update()

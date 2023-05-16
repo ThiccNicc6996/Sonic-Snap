@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InfiniteCardScript : CardScript
+public class InfiniteCard : Card
 {
     PowerUtils.Modifier negativeValue = new PowerUtils.Modifier("Infinite", "Multiply", -1);
 
@@ -12,12 +12,12 @@ public class InfiniteCardScript : CardScript
 
     public override void onReveal()
     {
-        List<GameObject> allCards = getOtherCards();
-        List<GameObject> oppositeCards = getOpposingCards();
+        List<Card> allCards = getOtherCards();
+        List<Card> oppositeCards = getOpposingCards();
         allCards.AddRange(oppositeCards);
 
-        foreach (GameObject card in allCards) {
-            card.GetComponent<CardScript>().addPowerMod(negativeValue);
+        foreach (Card card in allCards) {
+            card.addPowerMod(negativeValue);
         }
     }
 }

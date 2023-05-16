@@ -7,7 +7,7 @@ using TMPro;
 
 using static PowerUtils.Modifier;
 
-public class CardScript : MonoBehaviour
+public class Card : MonoBehaviour
 {
     //Original values
     public int coreCost;
@@ -195,21 +195,21 @@ public class CardScript : MonoBehaviour
     *****************/
 
     // Returns all cards at this card's zone except itself
-    protected List<GameObject> getOtherCards() {
-        List<GameObject> otherCards;
+    protected List<Card> getOtherCards() {
+        List<Card> otherCards;
 
         if (currentZone.GetComponent<ZoneScript>().isPlayerZone) {
-            otherCards = zoneEffect.getPlayerZone().getOtherCards(this.gameObject);
+            otherCards = zoneEffect.getPlayerZone().getOtherCards(this);
         } else {
-            otherCards = zoneEffect.getEnemyZone().getOtherCards(this.gameObject);
+            otherCards = zoneEffect.getEnemyZone().getOtherCards(this);
         }
 
         return otherCards;
     }
 
     // Returns all cards at the zone opposite of this card's zone
-    protected List<GameObject> getOpposingCards() {
-        List<GameObject> otherCards;
+    protected List<Card> getOpposingCards() {
+        List<Card> otherCards;
 
         if (currentZone.GetComponent<ZoneScript>().isPlayerZone) {
             otherCards = zoneEffect.getEnemyZone().getCards();

@@ -166,12 +166,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 9103824104937985267}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 9103824104937985267}
+  m_maskType: 0
 --- !u!1 &2760156109350622112
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7000920201640665152}
   - component: {fileID: 8781091630276781673}
-  - component: {fileID: 7369650192357026288}
+  - component: {fileID: 2507939119131986605}
   - component: {fileID: 7369650192357026291}
   - component: {fileID: 3754105537588877534}
   m_Layer: 0
@@ -266,7 +266,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7369650192357026288
+--- !u!114 &2507939119131986605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2760156109350622112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb5d6bd0183b270109fdfc53389348e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 852df74ba6f1cff42a75807dac119d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coreCost: 2
@@ -485,9 +485,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 8.31965, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 124980918757312127}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 124980918757312127}
+  m_maskType: 0

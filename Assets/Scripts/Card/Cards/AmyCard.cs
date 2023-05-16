@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmyCardScript : CardScript
+public class AmyCard : Card
 {
     public override void Start()
     {

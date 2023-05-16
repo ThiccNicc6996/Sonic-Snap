@@ -39,7 +39,7 @@ public class ZoneEffectScript : MonoBehaviour
     public virtual void onGoing() {}
 
     //Runs after each card is played
-    public virtual void perCard(CardScript cardScript) {}
+    public virtual void perCard(Card cardScript) {}
 
     /*******************
     * Getter Functions *

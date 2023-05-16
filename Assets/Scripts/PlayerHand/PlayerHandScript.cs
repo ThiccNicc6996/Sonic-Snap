@@ -32,7 +32,7 @@ public class PlayerHandScript : MonoBehaviour
 
             GameObject card = (GameObject)Instantiate(Resources.Load(pathName), transform.position, Quaternion.identity);
 
-            addToSlots(card);
+            addToSlots(card.GetComponent<Card>());
         } else {
             Debug.Log("HAND FULL");
         }
@@ -44,12 +44,12 @@ public class PlayerHandScript : MonoBehaviour
         drawCard();
     }
 
-    private void addToSlots(GameObject card) {
+    private void addToSlots(Card card) {
         addToTop(card);
         shiftSlots();
     }
 
-    private void addToTop(GameObject card) {
+    private void addToTop(Card card) {
         slots.Add(new HandUtilities.CardSlot(card));
     }
 
@@ -82,7 +82,7 @@ public class PlayerHandScript : MonoBehaviour
         }
     }
 
-    public bool containsCard(GameObject card) {
+    public bool containsCard(Card card) {
         bool contains = false;
         
         for (int i=0; i< slots.Count; i++) {
@@ -95,7 +95,7 @@ public class PlayerHandScript : MonoBehaviour
         return contains;
     }
 
-    public void removeCard(GameObject card) {
+    public void removeCard(Card card) {
         for (int i=0; i< slots.Count; i++) {
             if (slots[i].compareCard(card)) {
                 slots.RemoveAt(i);

@@ -16,7 +16,7 @@ public class StardustSpeedwayScript : ZoneEffectScript
         base.Start();
     }
 
-    public override void perCard(CardScript cardScript) {
+    public override void perCard(Card cardScript) {
         if (!cardScript.hasPowerMod(effect)) {
             cardScript.addPowerMod(effect);
         }

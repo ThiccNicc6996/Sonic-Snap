@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RayCardScript : CardScript
+public class RayCard : Card
 {
     private bool cardPlayed = false;
     private bool hasMoved = false;
     private GameObject originalZone;
 
-    private CardScript cardScript;
+    private Card cardScript;
 
     public override void Start() {
         base.Start();

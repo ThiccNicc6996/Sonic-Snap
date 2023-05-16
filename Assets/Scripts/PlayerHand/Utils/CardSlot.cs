@@ -6,13 +6,13 @@ namespace HandUtilities {
     public class CardSlot
     {
         public Vector3 position;
-        public GameObject card;
+        public Card card;
 
-        public CardSlot(GameObject initCard) {
+        public CardSlot(Card initCard) {
             card = initCard;
         }
 
-        public void changeCard(GameObject newCard) {
+        public void changeCard(Card newCard) {
             card = newCard;
         }
 
@@ -21,7 +21,7 @@ namespace HandUtilities {
             card.transform.position = position;
         }
 
-        public bool compareCard (GameObject otherCard) {
+        public bool compareCard (Card otherCard) {
             bool isCard = false;
 
             if (otherCard == card) {
