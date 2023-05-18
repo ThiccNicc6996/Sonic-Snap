@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
-public class ZoneScript : MonoBehaviour
+public class ZoneField : MonoBehaviour
 {
     //Main variables
     public bool isPlayerZone;
@@ -134,7 +134,7 @@ public class ZoneScript : MonoBehaviour
     private void lockZone() {
         foreach(Card card in cards) {
             card.GetComponent<Card>().lockCard();
-            card.GetComponent<Card>().updateZone(this.gameObject);
+            card.GetComponent<Card>().updateZone(this);
         }
     }
 

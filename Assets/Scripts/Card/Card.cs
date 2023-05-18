@@ -29,7 +29,7 @@ public class Card : MonoBehaviour
     //Whether the card can currently move to another zone DESPITE being locked
     public bool movable = false;
 
-    protected GameObject currentZone;
+    protected ZoneField currentZoneField;
     protected ZoneEffectScript zoneEffect;
 
     //Text for power and cost
@@ -89,8 +89,8 @@ public class Card : MonoBehaviour
         return power;
     }
 
-    public GameObject getZone() {
-        return currentZone;
+    public ZoneField getZone() {
+        return currentZoneField;
     }
 
     public bool isLocked() {
@@ -113,9 +113,9 @@ public class Card : MonoBehaviour
         movable = !movable;
     }
 
-    public void updateZone(GameObject newZone) {
-        currentZone = newZone;
-        zoneEffect = currentZone.transform.parent.Find("ZoneEffect").GetComponent<ZoneEffectScript>();
+    public void updateZone(ZoneField newZone) {
+        currentZoneField = newZone;
+        zoneEffect = currentZoneField.transform.parent.Find("ZoneEffect").GetComponent<ZoneEffectScript>();
     }
 
     public void updatePowerText() {
@@ -198,7 +198,7 @@ public class Card : MonoBehaviour
     protected List<Card> getOtherCards() {
         List<Card> otherCards;
 
-        if (currentZone.GetComponent<ZoneScript>().isPlayerZone) {
+        if (currentZoneField.GetComponent<ZoneField>().isPlayerZone) {
             otherCards = zoneEffect.getPlayerZone().getOtherCards(this);
         } else {
             otherCards = zoneEffect.getEnemyZone().getOtherCards(this);
@@ -211,7 +211,7 @@ public class Card : MonoBehaviour
     protected List<Card> getOpposingCards() {
         List<Card> otherCards;
 
-        if (currentZone.GetComponent<ZoneScript>().isPlayerZone) {
+        if (currentZoneField.GetComponent<ZoneField>().isPlayerZone) {
             otherCards = zoneEffect.getEnemyZone().getCards();
         } else {
             otherCards = zoneEffect.getPlayerZone().getCards();

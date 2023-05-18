@@ -14,7 +14,7 @@ public class NegaWispCard : Card
     }
 
     public override void onReveal() {
-        List<Card> otherCards = currentZone.GetComponent<ZoneScript>().getOtherCards(this);
+        List<Card> otherCards = currentZoneField.GetComponent<ZoneField>().getOtherCards(this);
 
         foreach (Card card in otherCards) {
             card.onDestroy();

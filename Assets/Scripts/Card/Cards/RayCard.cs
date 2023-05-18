@@ -6,7 +6,7 @@ public class RayCard : Card
 {
     private bool cardPlayed = false;
     private bool hasMoved = false;
-    private GameObject originalZone;
+    private ZoneField originalZoneField;
 
     private Card cardScript;
 
@@ -16,7 +16,7 @@ public class RayCard : Card
 
     public override void playCard() {
         cardPlayed = true;
-        originalZone = currentZone;
+        originalZoneField = currentZoneField;
 
         base.playCard();
     }
@@ -30,7 +30,7 @@ public class RayCard : Card
     }
 
     private void zoneChangeCheck() {
-        if (currentZone != originalZone) {
+        if (currentZoneField != originalZoneField) {
             movable = false;
             hasMoved = true;
         }
