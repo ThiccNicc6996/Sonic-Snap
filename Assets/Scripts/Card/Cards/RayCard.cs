@@ -11,6 +11,7 @@ public class RayCard : Card
     private Card cardScript;
 
     public override void Start() {
+        cardName = "Ray";
         base.Start();
     }
 

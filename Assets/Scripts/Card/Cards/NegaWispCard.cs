@@ -10,6 +10,7 @@ public class NegaWispCard : Card
     // Start is called before the first frame update
     public override void Start()
     {
+        cardName = "Nega Wisp";
         base.Start();
     }
 

@@ -6,6 +6,7 @@ public class AmyCard : Card
 {
     public override void Start()
     {
+        cardName = "Amy";
         base.Start();
     }
 

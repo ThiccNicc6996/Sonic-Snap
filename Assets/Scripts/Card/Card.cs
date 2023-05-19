@@ -9,9 +9,12 @@ using static PowerUtils.Modifier;
 
 public class Card : MonoBehaviour
 {
+    protected string cardName;
+    protected string cardDescription;
+
     //Original values
-    public int coreCost;
-    public int corePower;
+    protected int coreCost;
+    protected int corePower;
 
     //Potentially modified values
     protected int cost;
@@ -29,14 +32,29 @@ public class Card : MonoBehaviour
     //Whether the card can currently move to another zone DESPITE being locked
     public bool movable = false;
 
+    /*****************
+    * Zone variables *
+    *****************/
     protected ZoneField currentZoneField;
     protected ZoneEffectScript zoneEffect;
 
-    //Text for power and cost
+    /**************************
+    * Text for power and cost *
+    **************************/
     private TextMeshPro powerText;
     private TextMeshPro costText;
 
+    /****************
+    * Logic Manager *
+    ****************/
+
+    LogicManagerScript logicManager;
+
     public virtual void Start() {
+        logicManager  = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicManagerScript>();
+
+        establishCoreValues();
+
         cost = coreCost;
         power = corePower;
 
@@ -45,6 +63,20 @@ public class Card : MonoBehaviour
 
         powerText.text = corePower.ToString();
         costText.text = coreCost.ToString();
+    }
+
+    private void establishCoreValues() {
+        Debug.Log(cardName);
+        if (cardName != null) {
+            Dictionary<string, string> cardStats = logicManager.getCardStats()[cardName];
+
+            coreCost = Int32.Parse(cardStats["Cost"]);
+            corePower = Int32.Parse(cardStats["Power"]);
+            cardDescription = cardStats["Description"];
+        } else {
+            coreCost = 0;
+            corePower = 0;
+        }
     }
 
     /*****************

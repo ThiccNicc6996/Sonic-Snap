@@ -7,6 +7,7 @@ public class InfiniteCard : Card
     PowerUtils.Modifier negativeValue = new PowerUtils.Modifier("Infinite", "Multiply", -1);
 
     public override void Start() {
+        cardName = "Infinite";
         base.Start();
     }
 

@@ -75,6 +75,10 @@ public class LogicManagerScript : MonoBehaviour
         return playerEnergy;
     }
 
+    public Dictionary<string, Dictionary<string, string>> getCardStats() {
+        return cardStats;
+    }
+
     /****************
     Setting methods
     ****************/
