@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -21,6 +23,9 @@ public class LogicManagerScript : MonoBehaviour
     TMP_Text turnButtonText;
     TMP_Text energyText;
 
+    //Dictionary containing stats for cards
+    Dictionary<string, Dictionary<string, string>> cardStats = new Dictionary<string, Dictionary<string, string>>();
+
     private void Start()
     {
         //Initialize Objects
@@ -38,6 +43,8 @@ public class LogicManagerScript : MonoBehaviour
         //Initialize UI
         setEnergyText();
         setButtonText();
+
+        loadStatsFile();
     }
 
     public void nextTurn() {
@@ -123,5 +130,20 @@ public class LogicManagerScript : MonoBehaviour
 
     public void resetScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void loadStatsFile() {
+        string[] rows = File.ReadAllLines("Assets/Stats/CardStats.csv");
+
+        foreach (string row in rows) {
+            string[] cells = row.Split(',');
+
+            Dictionary<string, string> cellStats = new Dictionary<string, string>();
+            cellStats.Add("Cost", cells[1]);
+            cellStats.Add("Power", cells[2]);
+            cellStats.Add("Description", cells[3]);
+
+            cardStats.Add(cells[0], cellStats);
+        }
     }
 }

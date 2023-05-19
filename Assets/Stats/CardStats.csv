@@ -1,0 +1,40 @@
+Name,Cost,Power,Desc
+Amy,3,4,
+Big,,,
+Biolizard,,,
+Black Doom,,,
+Blaze,,,
+Chaos,3,1,"""Transforms into Chaos 1 when a Chaos Emerald is present"""
+Charmy,1,2,
+Chip,,,
+Cream,,,
+Dark Gaia,,,
+Dr. Eggman,6,5,"""On Reveal: Sends an Egg-Robo to each other location"""
+Egg-Pawn,,,
+Eggman Nega,,,
+Espio,,,
+Frenzy Wisp,,,
+Gamma,3,2,"""Ongoing: +1 for each enemy card here"""
+Giganto,6,15,
+Infinite,5,-12,"""Ongoing: All cards here have their power inverted"""
+Knuckles,4,6,
+Lazer Wisp,1,0,"""On Reveal: +1 for each enemy card here"""
+Lyric,,,
+Mephalis,6,12,
+Metal Sonic,,,
+Mighty,,,
+Nega Wisp,2,2,"“On Reveal: Destroy other cards here, +2 for each”"
+Ray,1,2,"""Can be moved once"""
+Rouge,4,4,
+Sage,,,
+Shadow,5,8,Can be moved any turn
+Silver,5,5,"""On Reveal: Take a 1-2 cost card and destroy an enemy 3-6 cost card"""
+Solaris,,,
+Sonic,5,8,"""On Reveal: Applies -1 power to all enemy cards here"""
+Sticks,3,2,"""On Reveal: +1 for each other card here"""
+Tails,3,3,"""Can move itself and one other card once"""
+Tikal,,,"""The opponent can't play cards here next turn"""
+Time Eater,,,
+Vector,,,
+Zavok,,,
+Zazz,,,
