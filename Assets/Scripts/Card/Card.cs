@@ -66,7 +66,6 @@ public class Card : MonoBehaviour
     }
 
     private void establishCoreValues() {
-        Debug.Log(cardName);
         if (cardName != null) {
             Dictionary<string, string> cardStats = logicManager.getCardStats()[cardName];
 
