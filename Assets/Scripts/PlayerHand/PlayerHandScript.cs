@@ -15,9 +15,14 @@ public class PlayerHandScript : MonoBehaviour
     //Variables for managing position of cards
     private Vector3 centerPos;
     private List<HandUtilities.CardSlot> slots = new List<HandUtilities.CardSlot>();
+
+    //Registry for instantiating cards
+    CardRegistry cardRegistry;
     
     void Start()
     {
+        cardRegistry  = GameObject.FindGameObjectWithTag("CardRegistry").GetComponent<CardRegistry>();
+
         centerPos = this.gameObject.transform.localPosition;
 
         deck = deckObject.gameObject.GetComponent<PlayerDeckScript>();
@@ -28,9 +33,8 @@ public class PlayerHandScript : MonoBehaviour
     public void drawCard() {
         if (canDraw && slots.Count <= 7) {
             string cardName = deck.drawCard();
-            string pathName = "GameObjects/Cards/" + cardName + "Card";
 
-            GameObject card = (GameObject)Instantiate(Resources.Load(pathName), transform.position, Quaternion.identity);
+            GameObject card = Instantiate(cardRegistry.retreiveCard(cardName, ""));
 
             addToSlots(card.GetComponent<Card>());
         } else {
