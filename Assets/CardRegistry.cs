@@ -7,7 +7,7 @@ public class CardRegistry : MonoBehaviour
     public GameObject[] cardList;
     private Dictionary<string, GameObject> registry = new Dictionary<string, GameObject>();
 
-    void Start()
+    void Awake()
     {
         foreach (GameObject card in cardList) {
             string cardName = card.name.Replace("Card", "");
