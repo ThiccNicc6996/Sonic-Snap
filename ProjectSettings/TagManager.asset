@@ -9,6 +9,7 @@ TagManager:
   - Zone
   - LogicManager
   - PlayerHand
+  - CardRegistry
   layers:
   - Default
   - TransparentFX
