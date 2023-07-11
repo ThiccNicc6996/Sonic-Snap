@@ -8,10 +8,10 @@ public class NegaWispCard : Card
 {
     PowerUtils.Modifier addTwo = new PowerUtils.Modifier("NegaWisp", "Add", 2);
     // Start is called before the first frame update
-    public override void Start()
+    public override void Awake()
     {
         cardName = "Nega Wisp";
-        base.Start();
+        base.Awake();
     }
 
     public override void onReveal() {

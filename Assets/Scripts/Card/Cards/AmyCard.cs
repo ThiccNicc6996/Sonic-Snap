@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AmyCard : Card
 {
-    public override void Start()
+    public override void Awake()
     {
         cardName = "Amy";
-        base.Start();
+        base.Awake();
     }
 
     public override void playCard()

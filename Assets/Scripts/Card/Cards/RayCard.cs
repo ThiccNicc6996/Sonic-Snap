@@ -10,9 +10,9 @@ public class RayCard : Card
 
     private Card cardScript;
 
-    public override void Start() {
+    public override void Awake() {
         cardName = "Ray";
-        base.Start();
+        base.Awake();
     }
 
     public override void playCard() {

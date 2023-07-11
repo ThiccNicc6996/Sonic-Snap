@@ -44,13 +44,21 @@ public class Card : MonoBehaviour
     private TextMeshPro powerText;
     private TextMeshPro costText;
 
+    /*************************************
+    * Variables for setting card artwork *
+    *************************************/
+    private Material cardMaterial;
+
+    public Texture[] artList;
+    private Dictionary<string, Texture> artRegistry = new Dictionary<string, Texture>();
+
     /****************
     * Logic Manager *
     ****************/
 
     LogicManagerScript logicManager;
 
-    public virtual void Start() {
+    public virtual void Awake() {
         logicManager  = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicManagerScript>();
 
         establishCoreValues();
@@ -60,6 +68,9 @@ public class Card : MonoBehaviour
 
         powerText = this.gameObject.transform.Find("PowerText").gameObject.GetComponent<TextMeshPro>();
         costText = this.gameObject.transform.Find("CostText").gameObject.GetComponent<TextMeshPro>();
+
+        cardMaterial = this.GetComponent<MeshRenderer>().material;
+        initializeArtRegistry();
 
         powerText.text = corePower.ToString();
         costText.text = coreCost.ToString();
@@ -75,6 +86,14 @@ public class Card : MonoBehaviour
         } else {
             coreCost = 0;
             corePower = 0;
+        }
+    }
+
+    private void initializeArtRegistry() {
+        foreach (Texture art in artList) {
+            string artName = art.name;
+
+            artRegistry.Add(artName, art);
         }
     }
 
@@ -157,6 +176,15 @@ public class Card : MonoBehaviour
             powerText.color = new Color(255,0,0);
         } else {
             powerText.color = new Color(0,0,0);
+        }
+    }
+
+    public void updateArt(string artName) {
+
+        if (artRegistry.ContainsKey(artName)) {
+            Texture cardArt = artRegistry[artName];
+
+            cardMaterial.SetTexture("_MainTex", cardArt);
         }
     }
 

@@ -34,7 +34,8 @@ public class PlayerHandScript : MonoBehaviour
         if (canDraw && slots.Count <= 7) {
             string cardName = deck.drawCard();
 
-            GameObject card = Instantiate(cardRegistry.retreiveCard(cardName, ""));
+            GameObject card = Instantiate(cardRegistry.retreiveCard(cardName));
+            card.GetComponent<Card>().updateArt("default");
 
             addToSlots(card.GetComponent<Card>());
         } else {

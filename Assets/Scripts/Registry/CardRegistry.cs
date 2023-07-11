@@ -16,7 +16,7 @@ public class CardRegistry : MonoBehaviour
         }
     }
 
-    public GameObject retreiveCard(string cardName, string variantName) {
+    public GameObject retreiveCard(string cardName) {
         GameObject card;
 
         if (registry.ContainsKey(cardName)) {
