@@ -26,8 +26,6 @@ public class PlayerHandScript : MonoBehaviour
         centerPos = this.gameObject.transform.localPosition;
 
         deck = deckObject.gameObject.GetComponent<PlayerDeckScript>();
-
-        drawOpeningHand();
     }
 
     public void drawCard() {
@@ -43,7 +41,7 @@ public class PlayerHandScript : MonoBehaviour
         }
     }
 
-    private void drawOpeningHand() {
+    public void drawOpeningHand() {
         drawCard();
         drawCard();
         drawCard();

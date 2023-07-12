@@ -28,10 +28,11 @@ public class LogicManagerScript : MonoBehaviour
 
     private void Start()
     {
-        //Initialize Objects
+        loadStatsFile();
 
         //Player Setup
         playerHand = GameObject.Find("PlayerHand").transform.gameObject.GetComponent<PlayerHandScript>();
+        playerHand.drawOpeningHand();
         playerEnergy = energy;
 
         //UI Setup
@@ -43,8 +44,6 @@ public class LogicManagerScript : MonoBehaviour
         //Initialize UI
         setEnergyText();
         setButtonText();
-
-        loadStatsFile();
     }
 
     public void nextTurn() {
@@ -146,6 +145,7 @@ public class LogicManagerScript : MonoBehaviour
             cellStats.Add("Cost", cells[1]);
             cellStats.Add("Power", cells[2]);
             cellStats.Add("Description", cells[3]);
+            cellStats.Add("Movable", cells[4]);
 
             cardStats.Add(cells[0], cellStats);
         }

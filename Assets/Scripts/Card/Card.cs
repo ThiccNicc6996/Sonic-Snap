@@ -30,7 +30,7 @@ public class Card : MonoBehaviour
     //Whether card is locked into place (ex: card was played on previous turn)
     protected bool locked = false;
     //Whether the card can currently move to another zone DESPITE being locked
-    public bool movable = false;
+    protected bool movable = false;
 
     /*****************
     * Zone variables *
@@ -59,6 +59,8 @@ public class Card : MonoBehaviour
     LogicManagerScript logicManager;
 
     public virtual void Awake() {
+        cardName = this.name.Replace("Card","").Replace("(Clone)","");
+
         logicManager  = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicManagerScript>();
 
         establishCoreValues();
@@ -83,6 +85,11 @@ public class Card : MonoBehaviour
             coreCost = Int32.Parse(cardStats["Cost"]);
             corePower = Int32.Parse(cardStats["Power"]);
             cardDescription = cardStats["Description"];
+            if (cardStats["Movable"] == "true") {
+                movable = true;
+            } else {
+                movable = false;
+            }
         } else {
             coreCost = 0;
             corePower = 0;
