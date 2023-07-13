@@ -53,7 +53,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2431797957086050185, guid: 5eb288631d953aa4d913f7561a75fa8c, type: 3}
       propertyPath: m_Name
-      value: BasicCard
+      value: GammaCard
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3266496184676309221, guid: 5eb288631d953aa4d913f7561a75fa8c, type: 3}
+      propertyPath: artList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266496184676309221, guid: 5eb288631d953aa4d913f7561a75fa8c, type: 3}
+      propertyPath: artList.Array.data[0]
+      value: 
+      objectReference: {fileID: 2800000, guid: f83dc41dd724e0f429ab84f5118ef309, type: 3}
+    m_RemovedComponents:
+    - {fileID: 3266496184676309221, guid: 5eb288631d953aa4d913f7561a75fa8c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5eb288631d953aa4d913f7561a75fa8c, type: 3}
+--- !u!1 &6585537654160316418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2431797957086050185, guid: 5eb288631d953aa4d913f7561a75fa8c, type: 3}
+  m_PrefabInstance: {fileID: 8852947399569387403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5577315103083881278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6585537654160316418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19d8877c95ebda40bfd6e6b388c899a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artList:
+  - {fileID: 2800000, guid: f83dc41dd724e0f429ab84f5118ef309, type: 3}
